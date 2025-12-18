@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Sign IN</title>
+        {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h3>SIGN IN below:</h3>
+
+    <form action="{% url 'signin' %}" method="post">
+        {% csrf_token %}
+        <label>Username </label>
+        <input type="text" name="username">
+        <br><br>
+        <label>Password </label>
+        <input type="password" name="password">
+        <br><br>
+        
+        <br><br>
+        <button type="submit">SIGN IN</button>
+    </form>
+</body>
+</html>
