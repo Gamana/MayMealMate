@@ -28,7 +28,7 @@
                     <td>{{ r.cuisine }}</td>
                     <td>{{ r.rating }}</td>
                     <td>
-                        <a href="">
+                        <a href="{% url 'view_menu' r.id username %}">
                             View Menu
                         </a>
                     </td>

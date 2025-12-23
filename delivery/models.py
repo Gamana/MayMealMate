@@ -18,3 +18,11 @@ class Restaurant(models.Model):
     picture = models.URLField(max_length = 200, default='https://m.ahstatic.com/is/image/accorhotels/HCM_P_8147067:4by3?fmt=jpg&op_usm=1.75,0.3,2,0&resMode=sharp2&iccEmbed=true&icc=sRGB&dpr=on,1.5&wid=335&hei=251&qlt=80')
     cuisine = models.CharField(max_length = 200)
     rating = models.FloatField()
+
+class Item(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete = models.CASCADE, related_name = "items")
+    name = models.CharField(max_length = 20)
+    description = models.CharField(max_length = 200)
+    price = models.FloatField()
+    vegeterian = models.BooleanField(default=False)
+    picture = models.URLField(max_length = 400, default='https://www.indiafilings.com/learn/wp-content/uploads/2024/08/How-to-Start-Food-Business.jpg')
