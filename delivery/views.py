@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Item, User
+from .models import Cart, Item, User
 from .models import Restaurant
 
 # Create your views here.
@@ -173,8 +173,27 @@ def update_menu(request, restaurant_id):
 def view_menu(request, restaurant_id, username):
     restaurant = Restaurant.objects.get(id = restaurant_id)
     itemList = restaurant.items.all()
+    #return HttpResponse("Items collected")
     #itemList = Item.objects.all()
     return render(request, 'customer_menu.html'
                   ,{"itemList" : itemList,
                      "restaurant" : restaurant, 
                      "username":username})
+
+def add_to_cart(request, item_id, username):
+    item = Item.objects.get(id = item_id)
+    customer = User.objects.get(username = username)
+
+    cart, created = Cart.objects.get_or_create(customer = customer)
+
+    cart.items.add(item)
+
+    return HttpResponse('added to cart')
+
+def show_cart(request, username):
+    customer = User.objects.get(username = username)
+    cart = Cart.objects.filter(customer=customer).first()
+    items = cart.items.all() if cart else []
+    total_price = cart.total_price() if cart else 0
+
+    return render(request, 'cart.html',{"itemList" : items, "total_price" : total_price, "username":username})

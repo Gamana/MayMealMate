@@ -6,40 +6,34 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Welcome {{username}}!</h3>
-
-    <a href="{% url 'show_cart' username %}" > Go to cart</a>
-
+    Hello {{username}}
     <!-- show current menu -->
     <table border="1">
         <thead>
             <tr>
-                <th>Item name</th>
-                <th>Picture</th>
+                <th>Item Image</th>
+                <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Is veg?</th>
-                <th>Operation</th>
+                <th>Operations</th>
             </tr>
         </thead>
         <tbody>
             {%  for item in itemList %}
                 <tr>
-                    <td>{{ item.name }}</td>
                     <td>
                         <img src="{{ item.picture }}">
                     </td>
+                    <td>{{ item.name }}</td>
                     <td>{{ item.description }}</td>
                     <td>{{ item.price }}</td>
-                    <td>{{ item.vegeterian }}</td>
-                    <td>
-                        <a href="{% url 'add_to_cart' item.id username %}">
-                            Add to cart
-                        </a>
-                    </td>
                 </tr>
             {% endfor %}
         </tbody>
+        <h2>Total price : {{total_price}}</h2>
+        <form>
+            <input type="submit" value="CHECK OUT" />
+        </form>
     </table>
 </body>
 </html>
