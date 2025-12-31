@@ -117,3 +117,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+RAZORPAY_KEY_ID = 'rzp_test_lT6VV3Hhr4yCQ'
+RAZORPAY_KEY_SECRET = 'eFILRtRtJqNpE4Qkz5a3K9'
+

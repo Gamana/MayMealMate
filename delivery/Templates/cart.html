@@ -15,7 +15,6 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Operations</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +30,7 @@
             {% endfor %}
         </tbody>
         <h2>Total price : {{total_price}}</h2>
-        <form>
+        <form action="{% url 'checkout' username %}">
             <input type="submit" value="CHECK OUT" />
         </form>
     </table>
